@@ -32,8 +32,6 @@ public class Controller {
         try {
             Integer.parseInt(a);
         } catch (Exception ex) {
-            //Incorrect way of handling exceptions.
-            //By returning "error" no information is given to the costumer.
             logger.log(Level.SEVERE,"Impossible to parse a vowel to integer.",ex);
             return "Something went wrong, please check logs";
         }
