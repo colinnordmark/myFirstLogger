@@ -45,7 +45,7 @@ Effective logging requires systematic recording of important details in an easy-
 **Include Exception Type in Log:** Including the type of exception in the log helps in identifying the nature of the issue.
 
 
-![More descriptive error message](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wcvsik3r30dbor0vh7r6.png)
+![More descriptive error message](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1lzhemr5uz5y2ylrychs.png)
 
 
 ```java
