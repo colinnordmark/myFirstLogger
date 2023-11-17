@@ -1,6 +1,9 @@
 package colin.dev.myfirstlogger;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,28 +16,27 @@ import java.util.logging.Logger;
 public class Controller {
 
     private static final Logger logger = Logger.getLogger(LoggingExample.class.getName());
-    @GetMapping
-    public String testLog(){
-        String a = "a";
+    @GetMapping("/{a}")
+    public ResponseEntity<?> testLog(@PathVariable String a){
         try {
             Integer.parseInt(a);
         } catch (Exception ex) {
             //Incorrect way of handling exceptions.
-            //By returning "error" no information is given to the costumer.
-            return "error";
+            //By returning "error" no information is given to the client.
+            return ResponseEntity.badRequest().body("error");
         }
-        return "OK";
+        return ResponseEntity.ok().body("ok");
     }
 
-    @GetMapping("/alternative")
-    public String testLogUpdated(){
-        String a = "a";
+    @GetMapping("/alternative/{a}")
+    public ResponseEntity<?> testLogUpdated(@PathVariable String a){
         try {
             Integer.parseInt(a);
         } catch (Exception ex) {
-            logger.log(Level.SEVERE,"Impossible to parse a vowel to integer.",ex);
-            return "Something went wrong, please check logs";
+            String message = "Impossible to parse a vowel to integer.";
+            logger.log(Level.SEVERE, message,ex);
+            return ResponseEntity.badRequest().body(message + "<br/>" + ex);
         }
-        return "OK";
+        return ResponseEntity.ok().build();
     }
 }
