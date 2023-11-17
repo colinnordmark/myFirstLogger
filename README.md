@@ -54,7 +54,7 @@ Effective logging requires systematic recording of important details in an easy-
         try {
             Integer.parseInt(a);
         } catch (Exception ex) {
-            String message = "Impossible to parse a vowel to integer.";
+            String message = "Impossible to parse a non-numeric value to integer.";
             logger.log(Level.SEVERE, message,ex);
             return ResponseEntity.badRequest().body(message + "<br/>" + ex);
         }
